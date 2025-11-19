@@ -248,8 +248,8 @@
                 <button id="zoomReset" class="btn ghost" title="Reset zoom">100%</button>
                 <button id="zoomIn" class="btn ghost" title="Zoom in">+</button>
                 <div class="sep"></div>
-                <button id="fitHeight" class="btn ghost" title="Fit to width">Fit height</button>
-                <button id="fitHeight" class="btn ghost" title="Fit height">Fit width</button>
+                <button id="fitHeight" class="btn ghost" title="Fit to width">Fit width</button>
+                <button id="fitHeight" class="btn ghost" title="Fit height">Fit height</button>
                 <div class="grow"></div>
                 <button id="reloadBtn" class="btn ghost" title="Force reload from diagram.mmd">Reload</button>
                 <button id="exportSvgBtn" class="btn ghost" title="Export current SVG">Export SVG</button>
@@ -334,12 +334,12 @@
         function computeFitZoom() {
             if (!baseW || !baseH) return;
             const cw = panzoom.clientWidth || baseW; const ch = panzoom.clientHeight || baseH;
-            if (fitMode === 'height') zoom = cw / baseW; else if (fitMode === 'height') zoom = ch / baseH;
+            if (fitMode === 'width') zoom = cw / baseW; else if (fitMode === 'height') zoom = ch / baseH;
             zoom = Math.min(8, Math.max(0.1, zoom)); applyZoomToSVG();
         }
         function setFitMode(mode) {
             fitMode = mode;
-            fitWidthBtn.classList.toggle('active', fitMode === 'height');
+            fitWidthBtn.classList.toggle('active', fitMode === 'width');
             fitHeightBtn.classList.toggle('active', fitMode === 'height');
             computeFitZoom();
         }
@@ -458,7 +458,7 @@
             removeMermaidErrorArtifacts();
             await sync(true);
             startPolling();
-            setFitMode('height'); // responsive default
+            setFitMode('width'); // responsive default
         })();
 
         themeBtn.addEventListener('click', toggleTheme);
