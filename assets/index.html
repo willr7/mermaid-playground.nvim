@@ -334,12 +334,12 @@
         function computeFitZoom() {
             if (!baseW || !baseH) return;
             const cw = panzoom.clientWidth || baseW; const ch = panzoom.clientHeight || baseH;
-            if (fitMode === 'width') zoom = cw / baseW; else if (fitMode === 'height') zoom = ch / baseH;
+            if (fitMode === 'height') zoom = cw / baseW; else if (fitMode === 'height') zoom = ch / baseH;
             zoom = Math.min(8, Math.max(0.1, zoom)); applyZoomToSVG();
         }
         function setFitMode(mode) {
             fitMode = mode;
-            fitWidthBtn.classList.toggle('active', fitMode === 'width');
+            fitWidthBtn.classList.toggle('active', fitMode === 'height');
             fitHeightBtn.classList.toggle('active', fitMode === 'height');
             computeFitZoom();
         }
@@ -458,7 +458,7 @@
             removeMermaidErrorArtifacts();
             await sync(true);
             startPolling();
-            setFitMode('width'); // responsive default
+            setFitMode('height'); // responsive default
         })();
 
         themeBtn.addEventListener('click', toggleTheme);
